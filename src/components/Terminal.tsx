@@ -54,7 +54,7 @@ const Terminal = (props: TerminalProps) => {
     "skills",
   ] as const;
   type EchoCommand = typeof echoCommands[number];
-  const utilityCommands = ["clear", "all"] as const;
+  const utilityCommands = ["clear", "all", "ls"] as const;
   type UtilityCommand = typeof utilityCommands[number];
   const allCommands = [...echoCommands, ...utilityCommands] as const;
   type Command = typeof allCommands[number];
@@ -114,13 +114,13 @@ const Terminal = (props: TerminalProps) => {
           Right, so, where to begin? Well, my parents met in... Nah, just
           kidding.
           <br />
-          As you probably know, my name is {glow("Pst4r8")}. I'm a{" "}
-          {getAge(new Date(2003, 06, 08))} year old {glow("Computer Scientist")}{" "}
+          As you probably know, my name is {glow("Pst4r8")}. I'm a
+          {getAge(new Date(2003, 6, 8))} year old Computer Scientist
           born and bred in the beautiful Indonesia and currently living in
           Java Island.
         </p>
         <p>
-          I'm a {glow("computer science")} student for at least one year and a programmer
+          I'm a {glow("Computer Science")} student for at least one year and a programmer
           self-student for at least two. I like to program, I like to think about
           how to design software, structure projects, and how to write elegant code.
         </p>
@@ -373,6 +373,7 @@ const Terminal = (props: TerminalProps) => {
           setOutput([]);
           break;
         }
+        case "ls":
         case "all": {
           // Output all commands in a custom order.
           const allCommandsOutput = [
@@ -423,7 +424,7 @@ const Terminal = (props: TerminalProps) => {
           <span>{input}</span>
         </div>
       );
-      setOutput([...output, commandRecord, matchingCommands.join("    ")]);
+      setOutput([...output, commandRecord, matchingCommands.join(" ")]);
       return input;
     }
   };
